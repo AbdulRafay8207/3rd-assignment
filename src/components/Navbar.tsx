@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router'
 
 const navLinks = [
-  { title: 'Home', link: '/' },
+  { title: 'Home', link: '/home' },
   { title: 'About', link: '/about' },
-  { title: 'Students', link: '/students' }, 
+  { title: 'Add Student', link: '/students/add' },
+
 ]
 
 

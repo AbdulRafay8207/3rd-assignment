@@ -1,4 +1,23 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+// Delete student
+export const deleteStudent = createAsyncThunk<number, number, { rejectValue: string }>(
+  'students/delete',
+  async (id, thunkAPI) => {
+    try {
+      const response = await fetch(`https://dummyjson.com/users/${id}`, {
+        method: 'DELETE',
+      })
+      if (!response.ok) {
+        throw new Error('Failed to delete student')
+      }
+      return id
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)
 
 interface Student {
   id: number
@@ -106,6 +125,19 @@ const studentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // deleteStudent
+      .addCase(deleteStudent.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(deleteStudent.fulfilled, (state, action) => {
+        state.loading = false
+        state.students = state.students.filter((s) => s.id !== action.payload)
+      })
+      .addCase(deleteStudent.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload ?? 'Error deleting student'
+      })
       // fetchStudents
       .addCase(fetchStudents.pending, (state) => {
         state.loading = true
@@ -145,9 +177,6 @@ const studentSlice = createSlice({
         const idx = state.students.findIndex((s) => s.id === action.payload.id)
         if (idx !== -1) {
           state.students[idx] = action.payload
-        }
-        if (state.singleStudent?.id === action.payload.id) {
-          state.singleStudent = action.payload
         }
       })
       .addCase(updateStudent.rejected, (state, action) => {

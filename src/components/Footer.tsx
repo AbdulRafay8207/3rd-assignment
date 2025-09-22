@@ -8,26 +8,10 @@ import {
 } from 'lucide-react'
 
 const socialLinks = [
-  {
-    name: 'LinkedIn',
-    link: '/',
-    icon: <LinkedinIcon />,
-  },
-  {
-    name: 'X',
-    link: '/',
-    icon: <TwitterIcon />,
-  },
-  {
-    name: 'Facebook',
-    link: '/',
-    icon: <FacebookIcon />,
-  },
-  {
-    name: 'Website',
-    link: '/',
-    icon: <EarthIcon />,
-  },
+  { name: 'LinkedIn', link: '/', icon: <LinkedinIcon /> },
+  { name: 'X', link: '/', icon: <TwitterIcon /> },
+  { name: 'Facebook', link: '/', icon: <FacebookIcon /> },
+  { name: 'Website', link: '/', icon: <EarthIcon /> },
 ]
 
 const description =
@@ -35,61 +19,59 @@ const description =
 
 const Footer = () => {
   return (
-    <footer className="relative z-50 bg-[#191F33]">
-      <div className="flex flex-col items-center px-4 py-12">
-        {/* app logo */}
-        <div>
-          <a
-            href="/"
-            className="mb-8 flex items-center justify-center gap-5 text-white"
-          >
-            <img
-              src="https://res.cloudinary.com/dyvkdwzcj/image/upload/v1709055594/logo-1_vo1dni.png"
-              className="h-8"
-              alt="Logo"
-            />
-            <span className="text-3xl font-semibold tracking-wider">
-              Flexy UI
-            </span>
-          </a>
-          <p className="max-w-xl text-center text-lg font-medium text-white">
-            {description}
-          </p>
-        </div>
+    <footer className="bg-[#191F33] text-white">
+      <div className="flex flex-col items-center px-4 py-12 max-w-7xl mx-auto text-center">
+        {/* Logo and description */}
+        <a
+          href="/"
+          className="mb-6 flex items-center justify-center gap-3 text-white"
+        >
+          <img
+            src="https://res.cloudinary.com/dyvkdwzcj/image/upload/v1709055594/logo-1_vo1dni.png"
+            className="h-8"
+            alt="Logo"
+          />
+          <span className="text-3xl font-semibold tracking-wider">
+            Flexy UI
+          </span>
+        </a>
 
-        {/* social links */}
-        <div className="mt-8">
-          <span className="mb-6 block text-center text-lg font-medium text-[#767E94]">
+        <p className="max-w-2xl text-lg font-medium text-white mb-8">
+          {description}
+        </p>
+
+        {/* Social links */}
+        <div className="mb-6">
+          <span className="block text-lg font-medium text-[#767E94] mb-4">
             Follow Us
           </span>
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-6 justify-center">
             {socialLinks.map(({ name, icon, link }) => (
               <li key={name}>
                 <a
                   href={link}
                   title={name}
-                  className="text-white hover:text-[#767e94]"
+                  className="hover:text-[#767e94]"
                   target="_blank"
                 >
                   {icon}
                 </a>
-                <span className="sr-only">{name} account</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* email */}
-        <div className="mt-6 mb-2 flex items-center gap-2 text-white">
+        {/* Contact */}
+        <div className="mb-4 flex items-center gap-2">
           <AtSignIcon size={16} />
           <span className="text-lg font-medium">info@email.com</span>
         </div>
 
-        {/* call to action */}
-        <div className="mt-8">
+        {/* CTA */}
+        <div className="mb-8">
           <button
             type="button"
-            className="flex items-center gap-2 rounded-lg bg-gray-800 px-5 py-2.5 text-base font-semibold text-sky-100 transition duration-300 ease-in-out hover:bg-gray-100 hover:text-sky-600"
+            className="flex items-center gap-2 rounded-lg bg-gray-800 px-5 py-2.5 text-base font-semibold text-sky-100 hover:bg-gray-100 hover:text-sky-600 transition"
           >
             <HeadsetIcon size={20} />
             <span>Book A Demo</span>
@@ -97,21 +79,19 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* about author or app/copyrights */}
-      <div className="bg-[#2E3447]">
-        <div className="px-3 py-3 text-center">
-          <span className="text-[#767E94]">
-            Coded with 💙 by{' '}
-            <a
-              href="https://www.linkedin.com/in/abdulbasitprofile/"
-              target="_blank"
-              className="text-white"
-            >
-              Abdul Basit{' '}
-            </a>
-            in Karachi
-          </span>
-        </div>
+      {/* Bottom bar */}
+      <div className="bg-[#2E3447] py-3 text-center">
+        <span className="text-[#767E94] text-sm">
+          Coded with 💙 by{' '}
+          <a
+            href="https://www.linkedin.com/in/abdulbasitprofile/"
+            target="_blank"
+            className="text-white underline"
+          >
+            Abdul Basit
+          </a>{' '}
+          in Karachi
+        </span>
       </div>
     </footer>
   )

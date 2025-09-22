@@ -1,9 +1,9 @@
-// src/pages/StudentList.tsx
-import{ useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router'
 import type { AppDispatch, RootState } from '../app/store'
-import { fetchStudents } from '../features/student/studentSlice'
+import { fetchStudents, deleteStudent } from '../features/student/studentSlice'
+import Button from '../components/Button'
 
 const StudentList = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -27,14 +27,20 @@ const StudentList = () => {
         {students.map(student => (
           <li
             key={student.id}
-            className="border p-4 rounded hover:shadow-md transition cursor-pointer"
+            className="border p-4 rounded hover:shadow-md transition"
           >
-            <Link to={`/students/${student.id}`} className="block">
-              <p className="font-semibold text-lg">
-                {student.firstName} {student.lastName}
-              </p>
-              <p className="text-gray-600">{student.email}</p>
-            </Link>
+            <div className="flex justify-between items-center">
+              <Link to={`/students/${student.id}`} className="block flex-1">
+                <p className="font-semibold text-lg">
+                  {student.firstName} {student.lastName}
+                </p>
+                <p className="text-gray-600">{student.email}</p>
+              </Link>
+              <div className="flex gap-2 ml-4">
+                <Button variant="outline" onClick={() => window.location.href = `/students/${student.id}`}>Edit</Button>
+                <Button variant="secondary" onClick={() => dispatch(deleteStudent(student.id))}>Delete</Button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

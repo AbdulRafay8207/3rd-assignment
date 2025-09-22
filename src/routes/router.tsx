@@ -2,12 +2,11 @@ import { createBrowserRouter } from 'react-router'
 import AppLayout from '../components/AppLayout'
 import About from '../pages/About'
 import ErrorPage from '../pages/ErrorPage'
-import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
-import StudentDetail from '../pages/StudentDetail'
-import ProtectedRoute from '../components/ProtectedRoutes'
+import EditStudent from '../pages/EditStudent'
 import StudentList from '../pages/Allstudent'
+import AddStudentPage from '../pages/AddStudentPage'
 
 const router = createBrowserRouter([
   {
@@ -18,16 +17,21 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
+            <Signup />
         ),
       },
       { path: 'about', element: <About /> },
       { path: 'login', element: <Login /> },
       { path: 'signup', element: <Signup /> },
       {
-        path: 'students',
+  path: 'students/add',
+  element: (
+      <AddStudentPage />
+  ),
+},
+      
+      {
+        path: 'home',
         element: (
 
             <StudentList />
@@ -36,9 +40,7 @@ const router = createBrowserRouter([
       {
         path: 'students/:id',
         element: (
-          <ProtectedRoute>
-            <StudentDetail />
-          </ProtectedRoute>
+            <EditStudent />
         ),
       },
     ],

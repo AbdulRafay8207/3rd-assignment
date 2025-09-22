@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../app/store'
 import { fetchStudentById, updateStudent } from '../features/student/studentSlice'
 
-const StudentDetail = () => {
+const EditStudent = () => {
   const { id } = useParams<{ id: string }>()
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const StudentDetail = () => {
         email,
       })
     )
-    navigate('/')
+    navigate('/home')
   }
 
   if (loading) {
@@ -86,4 +86,4 @@ const StudentDetail = () => {
   )
 }
 
-export default StudentDetail
+export default EditStudent

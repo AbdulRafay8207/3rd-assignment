@@ -1,4 +1,3 @@
-// src/pages/StudentDetail.tsx
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,11 +8,11 @@ const StudentDetail = () => {
   const { id } = useParams()
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const studentId = id ?? '' // ✅ keep it as string
+  const studentId = id ?? '' 
 
   const { students } = useSelector((state: RootState) => state.students)
 
-  const student = students.find((s) => s.id === Number(studentId)) // ✅ compare string to string
+  const student = students.find((s) => s.id === Number(studentId)) 
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -33,7 +32,7 @@ const StudentDetail = () => {
   }, [student])
 
   const handleUpdate = () => {
-  const [firstName, lastName = ''] = name.split(' ') // handle single name too
+  const [firstName, lastName = ''] = name.split(' ') 
   dispatch(updateStudent({ id: Number(studentId), firstName, lastName, email }))
   navigate('/')
 }

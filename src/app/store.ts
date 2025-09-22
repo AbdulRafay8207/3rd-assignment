@@ -1,12 +1,11 @@
-// src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit'
 import studentReducer from '../features/student/studentSlice'
-import authReducer from '../features/auth/authSlice' // ⬅️ Import it!
+import authReducer from '../features/auth/authSlice'
 
 export const store = configureStore({
   reducer: {
     students: studentReducer,
-    auth: authReducer, // ⬅️ Add this line!
+    auth: authReducer, 
   },
 })
 
