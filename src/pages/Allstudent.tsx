@@ -37,7 +37,10 @@ const StudentList = () => {
                 <p className="text-gray-600">{student.email}</p>
               </Link>
               <div className="flex gap-2 ml-4">
-                <Button variant="outline" onClick={() => window.location.href = `/students/${student.id}`}>Edit</Button>
+                {/* <Button variant="outline" onClick={() => window.location.href = `/students/${student.id}`}>Edit</Button> */}
+                <Link to={`/students/${student.id}`}>
+  <Button variant="outline">Edit</Button>
+</Link>
                 <Button variant="secondary" onClick={() => dispatch(deleteStudent(student.id))}>Delete</Button>
               </div>
             </div>
